@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/ConsultaHorasPAE.css";
+import "./ConsultaHorasPAE.css";
 import {
   FaSearch,
   FaUserCircle,
@@ -7,7 +7,7 @@ import {
   FaGamepad,
   FaDiscord,
 } from "react-icons/fa";
-import { fetchMembers } from "../Service/memberApi.js";
+import { fetchMembers } from "memberApi.js";
 import Footer from "./Layout/Footer";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 

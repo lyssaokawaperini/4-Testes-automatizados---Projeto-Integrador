@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import emailjs from "@emailjs/browser";
-import "../styles/Contato.css";
+import "./Contato.css";
 import { FaInstagram } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-import Header from "./Layout/Header";
-import Footer from "./Layout/Footer";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 
 import ReactVLibras from "react-vlibras-plugin";
 

@@ -1,0 +1,257 @@
+/* Base Layout */
+.consulta-pae-page {
+  background-color: #0B060F;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content styling */
+.consulta-pae-main {
+  flex: 1;
+  padding: 20px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.title-section {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.title-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #01CCFE;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.consulta-pae-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #161B22;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-section {
+  margin-bottom: 30px;
+}
+
+.search-section h2 {
+  color: #e6edf3;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-box-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+@media (min-width: 576px) {
+  .search-box-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-icon {
+  color: #8b949e;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.search-box input::placeholder {
+  color: #8b949e;
+}
+
+.search-button {
+  background-color: #2ea043;
+  color: white;
+  border: none;
+  width: 60%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 150px;
+}
+
+.search-button:hover {
+  background-color: #3cb054;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 160, 67, 0.3);
+}
+
+/* Result container */
+.result-container {
+  background-color: #1c2330;
+  border-radius: 8px;
+  padding: 25px;
+  margin-top: 30px;
+  box-shadow: 0 4px 8px rgba(1, 204, 254, 0.15);
+  overflow: hidden;
+}
+
+.result-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.user-icon-container {
+  background-color: #01CCFE;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.user-icon {
+  font-size: 3rem;
+  color: #0B060F;
+}
+
+.result-header h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #01CCFE;
+  margin-bottom: 5px;
+}
+
+.result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #21262d;
+}
+
+.detail-icon {
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #161B22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #8b949e;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: #8b949e;
+  margin-bottom: 2px;
+}
+
+.detail-value {
+  font-weight: 600;
+  color: #e6edf3;
+  font-size: 1.05rem;
+}
+
+.hours-row {
+  background-color: rgba(1, 204, 254, 0.1);
+  border-left: 4px solid #01CCFE;
+}
+
+.hours-row .detail-icon {
+  background-color: #01CCFE;
+  color: #0B060F;
+}
+
+.hours-value {
+  color: #01CCFE;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Loading and error states */
+.loading, .error-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 1rem;
+}
+
+.error-message {
+  color: #f85149;
+  background-color: rgba(248, 81, 73, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .consulta-pae-main {
+    padding: 15px;
+  }
+  
+  .consulta-pae-content {
+    padding: 20px 15px;
+  }
+  
+  .result-container {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-box-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
