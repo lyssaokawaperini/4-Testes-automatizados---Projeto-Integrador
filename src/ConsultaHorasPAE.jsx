@@ -18,7 +18,6 @@ const ConsultaHorasPAE = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
-  // Fetch members data on component mount
   useEffect(() => {
     const loadMembers = async () => {
       try {
