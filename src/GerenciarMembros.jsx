@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Layout/Footer";
-import Header from "./Layout/HeaderAdmin.jsx";
+import Footer from "./Footer.jsx";
+import Header from "./HeaderAdmin.jsx";
 import { FaSearch, FaPencilAlt, FaTrashAlt, FaUserPlus } from "react-icons/fa";
-import "../styles/GerenciarMembros.css";
+import "./GerenciarMembros.css";
 import {
   fetchMembers,
   updateMember,
   deleteMember,
   createMember,
-} from "../Service/memberApi.js";
-import { fetchModalities } from "../Service/api.js";
-import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
+} from "./memberApi.js";
+import { fetchModalities } from "./api.js";
+import HeaderAdmin from "./HeaderAdmin.jsx";
 
 const GerenciarMembros = () => {
   const navigate = useNavigate();

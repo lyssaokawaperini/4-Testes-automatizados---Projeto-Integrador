@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaDiscord, FaTwitch, FaYoutube } from "react-icons/fa";
-import mauaLogo from "../../assets/ui/maua-branco.png";
-import "../../styles/Layout/Footer.css";
+import "./Footer.css";
 
 const Footer = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import Contato from "../src/Contato.jsx";
@@ -23,6 +23,7 @@ import emailjs from "@emailjs/browser";
 global.window.alert = jest.fn();
 
 describe("Componente Contato", () => {
+  const user = userEvent.setup();
   beforeEach(() => {
     jest.clearAllMocks();
   });

@@ -7,9 +7,9 @@ import {
   FaGamepad,
   FaDiscord,
 } from "react-icons/fa";
-import { fetchMembers } from "memberApi.js";
-import Footer from "./Layout/Footer";
-import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
+import { fetchMembers } from "./memberApi.js";
+import Footer from "./Footer.jsx";
+import HeaderAdmin from "./HeaderAdmin.jsx";
 
 const ConsultaHorasPAE = () => {
   const [input, setInput] = useState("");

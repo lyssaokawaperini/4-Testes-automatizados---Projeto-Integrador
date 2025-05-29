@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/GerenciarTreinos.css"; // Ensure this path is correct
+import "./GerenciarTreinos.css"; // Ensure this path is correct
 import { FaSearch, FaEdit, FaTrashAlt, FaFilter, FaPlus, FaUserPlus, FaUserMinus } from "react-icons/fa";
-import Footer from "./Layout/Footer.jsx";
-import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
+import Footer from "./Footer.jsx";
+import HeaderAdmin from "./HeaderAdmin.jsx";
 import {
   fetchTrainings,
   createTraining,
@@ -11,7 +11,7 @@ import {
   deleteTraining,
   fetchExternalModalities,
   fetchUsers, // Make sure you have a fetchUsers in your memberApi or a similar service
-} from "../Service/trainingApi.js"; // Adjust path as needed
+} from "./trainingApi.js"; // Adjust path as needed
 
 const GerenciarTreinos = () => {
   const navigate = useNavigate();

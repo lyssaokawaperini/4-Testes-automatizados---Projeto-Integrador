@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaMicrosoft } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci"; // Keep CiLogin for logout
 import { useMsal } from "@azure/msal-react";
-import mauaLogo from "../../assets/ui/maua-branco.png";
 import "../../styles/Layout/Header.css";
 
 const Header = ({ onLoginClick }) => {

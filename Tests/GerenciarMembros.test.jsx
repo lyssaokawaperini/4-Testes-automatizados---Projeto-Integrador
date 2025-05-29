@@ -1,3 +1,14 @@
+jest.mock("@azure/msal-react", () => ({
+  useMsal: () => ({
+    instance: { loginPopup: jest.fn() },
+    accounts: [{}],
+  }),
+  useAccount: () => ({}),
+}));
+jest.mock("../src/Header.jsx", () => () => <div data-testid="header-mock">Header Mock</div>);
+jest.mock("../src/HeaderAdmin.jsx", () => () => <div data-testid="header-admin-mock">HeaderAdmin Mock</div>);
+jest.mock("../src/Footer.jsx", () => () => <div data-testid="footer-mock">Footer Mock</div>);
+
 import React from "react";
 import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -44,15 +55,16 @@ const renderComponent = () => {
 describe("Componente GerenciarMembros", () => {
   const user = userEvent.setup();
 
+  // Padronize as chaves das modalidades para o mesmo formato usado no componente
   const mockModalitiesData = {
-    cs: { _id: "m1", Name: "Counter-Strike", Tag: "CS" },
-    lol: { _id: "m2", Name: "League of Legends", Tag: "LoL" },
+    CS: { _id: "m1", Name: "Counter-Strike", Tag: "CS" },
+    LoL: { _id: "m2", Name: "League of Legends", Tag: "LoL" },
   };
 
   beforeEach(() => {
     jest.clearAllMocks();
     fetchMembers.mockResolvedValue([]);
-    fetchModalities.mockResolvedValue({});
+    fetchModalities.mockResolvedValue(mockModalitiesData);
     global.window.confirm.mockReturnValue(true);
   });
 
@@ -81,10 +93,7 @@ describe("Componente GerenciarMembros", () => {
       () =>
         new Promise((resolve) => setTimeout(() => resolve(mockMembersData), 0))
     );
-    fetchModalities.mockResolvedValueOnce({
-      modCS: { _id: "cs1", Name: "Counter-Strike", Tag: "CS" },
-      modLoL: { _id: "lol1", Name: "League of Legends", Tag: "LoL" },
-    });
+    fetchModalities.mockResolvedValueOnce(mockModalitiesData);
 
     renderComponent();
     expect(screen.getByText("Carregando membros...")).toBeInTheDocument();
@@ -98,7 +107,7 @@ describe("Componente GerenciarMembros", () => {
     fetchMembers.mockRejectedValueOnce(
       new Error("Falha ao buscar membros da API")
     );
-    fetchModalities.mockResolvedValueOnce({});
+    fetchModalities.mockResolvedValueOnce(mockModalitiesData);
 
     renderComponent();
 
@@ -111,7 +120,7 @@ describe("Componente GerenciarMembros", () => {
 
   test("deve exibir uma tabela vazia (ou mensagem apropriada) se não houver membros", async () => {
     fetchMembers.mockResolvedValueOnce([]);
-    fetchModalities.mockResolvedValueOnce({});
+    fetchModalities.mockResolvedValueOnce(mockModalitiesData);
 
     renderComponent();
 
@@ -202,12 +211,15 @@ describe("Componente GerenciarMembros", () => {
 
     await user.click(screen.getByRole("button", { name: "ADICIONAR" }));
 
-    expect(createMember).toHaveBeenCalled();
-    expect(window.showNotification).toHaveBeenCalledWith(
-      "error",
-      "Erro ao adicionar membro!",
-      5000
-    );
+    // Aguarde o ciclo de event loop para garantir que o catch foi executado
+    await waitFor(() => {
+      expect(createMember).toHaveBeenCalled();
+      expect(window.showNotification).toHaveBeenCalledWith(
+        "error",
+        "Erro ao adicionar membro!",
+        5000
+      );
+    });
   });
 
   test("deve abrir o modal 'Editar Membro' com os dados corretos e salvar as alterações", async () => {
@@ -226,6 +238,7 @@ describe("Componente GerenciarMembros", () => {
     await waitFor(() => expect(screen.queryByText("Carregando modalidades...")).not.toBeInTheDocument());
 
     const linhaJulia = screen.getByText("Julia Alves").closest("tr");
+    // Use aria-label nos botões do componente para garantir acessibilidade!
     const botaoEditarJulia = within(linhaJulia).getByRole("button", { name: /edit/i });
     await user.click(botaoEditarJulia);
 
@@ -271,6 +284,7 @@ describe("Componente GerenciarMembros", () => {
     expect(await screen.findByText("Pedro Rocha")).toBeInTheDocument();
 
     const linhaPedro = screen.getByText("Pedro Rocha").closest("tr");
+    // Use aria-label nos botões do componente para garantir acessibilidade!
     const botaoExcluirPedro = within(linhaPedro).getByRole("button", { name: /delete/i });
     await user.click(botaoExcluirPedro);
 
@@ -295,6 +309,7 @@ describe("Componente GerenciarMembros", () => {
     expect(await screen.findByText("Laura Mendes")).toBeInTheDocument();
 
     const linhaLaura = screen.getByText("Laura Mendes").closest("tr");
+    // Use aria-label nos botões do componente para garantir acessibilidade!
     const botaoExcluirLaura = within(linhaLaura).getByRole("button", { name: /delete/i });
     await user.click(botaoExcluirLaura);
 
